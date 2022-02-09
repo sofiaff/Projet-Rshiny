@@ -9,4 +9,11 @@ Setup pour git:
 3) Créer un repertoire local:
 	1) En ligne de commande, sur son desktop taper la commande: git clone git@github.com:sofiaff/Projet-Rshiny.git
 
+Installer le paquet Shiny:
+	intall.packages("shiny")
+
+Rouler l'application:
+	ouvrir Rstudio
+	Ouvrir le fichier app.R
+	Dans jobs rouler app.R
 
