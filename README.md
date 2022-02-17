@@ -16,4 +16,16 @@ Rouler l'application:
 	ouvrir Rstudio
 	Ouvrir le fichier app.R
 	Dans jobs rouler app.R
-Helloworld
+
+Commandes git: 
+	Copier le repertoire : git clone 
+	Vérifier le status du projet: git status
+	Montrer les changements: git diff
+	Mettre à jour le répertoire local: git pull  (DOIT ETRE FAIT À CHAQUE FOIS AVANT DE COMMENCER À TRAVAILLER)
+	Ajouter les modifications localement : git add <fichiers>
+	Commit et ajout de commentaire: git commit
+	Soumettre les changements au répertoire distant: git push
+	Changer ou créer une branche: git checkout -b <NomDeLaBranche>
+	Voir l'historique des changement: git log
+	
+	
