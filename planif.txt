@@ -1,0 +1,9 @@
+Permettra de produire des graphes/analyses :
+- PCA : détection des outliers, pouvoir les enlever
+- heatmap : personnaliser au maximum
+- volcano plot : choix des seuils significatifs
+- analyse enrichissement Gene Ontology / pathway g:profiler
+
+1- Trouver comment uploader fichier tsv sur R.shiny
+2-Jouer dans R/ se familiariser
+3-Regarder les différentes fonctionnalités de Rshiny qui peuvent être pertinentes pour les analyses
