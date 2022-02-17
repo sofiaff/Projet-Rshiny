@@ -18,14 +18,14 @@ Rouler l'application:
 	Dans jobs rouler app.R
 <br/>
 Commandes git: <br/>
-	Copier le repertoire : git clone <br/>
-	Vérifier le status du projet: git status <br/>
-	Montrer les changements: git diff <br/>
-	Mettre à jour le répertoire local: git pull  (DOIT ETRE FAIT À CHAQUE FOIS AVANT DE COMMENCER À TRAVAILLER)<br/>
-	Ajouter les modifications localement : git add <fichiers> <br/>
-	Commit et ajout de commentaire: git commit <br/>
-	Soumettre les changements au répertoire distant: git push <br/>
-	Changer ou créer une branche: git checkout -b <NomDeLaBranche> <br/>
-	Voir l'historique des changement: git log <br/>
+*Copier le repertoire : git clone <br/>
+*Vérifier le status du projet: git status <br/>
+*Montrer les changements: git diff <br/>
+*Mettre à jour le répertoire local: git pull  (DOIT ETRE FAIT À CHAQUE FOIS AVANT DE COMMENCER À TRAVAILLER)<br/>
+*Ajouter les modifications localement : git add <fichiers> <br/>
+*Commit et ajout de commentaire: git commit <br/>
+*Soumettre les changements au répertoire distant: git push <br/>
+*Changer ou créer une branche: git checkout -b <NomDeLaBranche> <br/>
+*Voir l'historique des changement: git log <br/>
 	
 	
