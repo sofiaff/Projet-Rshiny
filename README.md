@@ -10,7 +10,7 @@ Setup pour git:
 	1) En ligne de commande, sur son desktop taper la commande: git clone git@github.com:sofiaff/Projet-Rshiny.git
 
 Installer le paquet Shiny:
-	intall.packages("shiny")
+	install.packages("shiny")
 
 Rouler l'application:
 	ouvrir Rstudio
