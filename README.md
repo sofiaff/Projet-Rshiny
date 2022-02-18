@@ -25,7 +25,7 @@ Commandes git: <br/>
 *	Ajouter les modifications localement : git add <fichiers> <br/>
 *	Commit et ajout de commentaire: git commit <br/>
 *	Soumettre les changements au répertoire distant: git push <br/>
-*	Changer ou créer une branche: git checkout -b <NomDeLaBranche> <br/>
+*	Changer ou créer une branche: git checkout -b NomDeLaBranche <br/>
 *	Voir l'historique des changement: git log <br/>
 	
 	
