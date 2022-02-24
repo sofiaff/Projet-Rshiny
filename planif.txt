@@ -10,3 +10,5 @@ Permettra de produire des graphes/analyses :
 
 Heatmap:
 https://shiny.rstudio.com/gallery/absolutely-positioned-panels.html
+
+https://stackoverflow.com/questions/59445092/how-to-plot-heatmap-with-r-shiny
