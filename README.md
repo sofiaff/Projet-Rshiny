@@ -26,6 +26,6 @@ Commandes git: <br/>
 *	Changer ou créer une branche: git checkout -b NomDeLaBranche <br/>
 *	Voir l'historique des changement: git log <br/>
 	
-Paquets à installer pour que l'application fonctionne:
-	install.packages("shiny")
-	install.packages("vroom")
+Paquets à installer pour que l'application fonctionne:<br/>
+	install.packages("shiny")<br/>
+	install.packages("vroom")<br/>
