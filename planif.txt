@@ -7,3 +7,6 @@ Permettra de produire des graphes/analyses :
 1- Trouver comment uploader fichier tsv sur R.shiny
 2-Jouer dans R/ se familiariser
 3-Regarder les différentes fonctionnalités de Rshiny qui peuvent être pertinentes pour les analyses
+
+Heatmap:
+https://shiny.rstudio.com/gallery/absolutely-positioned-panels.html
