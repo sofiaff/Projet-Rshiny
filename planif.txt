@@ -9,8 +9,7 @@ Permettra de produire des graphes/analyses :
 3-Regarder les différentes fonctionnalités de Rshiny qui peuvent être pertinentes pour les analyses
 
 
-Heatmap:
-https://shiny.rstudio.com/gallery/absolutely-positioned-panels.html
+
 
 Option de filtre sur le dataset:
 
@@ -21,4 +20,10 @@ Option de filtre sur le dataset:
 Pour les heatmap tu veux pas le générer avec tous les gènes donc il faudra ces filtres la
 
 PCA sur tout les gènes et volcano aussi (mais pour volcano tu met un seuil sur l'affichage
+
+
+Heatmap
+https://shiny.rstudio.com/gallery/absolutely-positioned-panels.html
+
+https://stackoverflow.com/questions/59445092/how-to-plot-heatmap-with-r-shiny
 
