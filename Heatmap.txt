@@ -1,0 +1,11 @@
+Pour te donner une idée:
+L'article : https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-016-1260-x
+Le code: https://github.com/Bohdan-Khomtchouk/Microscope
+
+En bref, ils ont fait une app Rshiny avec beeeeaucoup de fonctionnalité pour trier les données de séquençage, ya des fonctionnalisés pour calculer les P values et autres trucs du même genre, qu'on ne veut pas, mais ca donne une bonne idée des packages/du code pour le heatmap. Ils ont aussi du code sur les PCA donc ca aussi ca va être intéressant.
+
+Tu checkeras Microscope/microscope/server.r  et Microscope/microscope/ui.r sur leur GitHub.
+
+
+
+
