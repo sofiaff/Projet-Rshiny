@@ -1,0 +1,48 @@
+
+
+Faut se demander si à chaque fois on veut générer un nouveau fichier et faire manipuler l'utilisateur?
+i.e. est-ce que la app R shiny génère un nouveau fichier qu'on entre en input  on on manipule les colonnes ?
+
+Volcano plot:
+
+Voire tutoriel sur galaxy pour la structure (idéalement): https://training.galaxyproject.org/training-material/topics/transcriptomics/tutorials/rna-seq-viz-with-volcanoplot/tutorial.html
+Tutoriel pour volcano plot sur R : https://training.galaxyproject.org/training-material/topics/transcriptomics/tutorials/rna-seq-viz-with-volcanoplot-r/tutorial.html
+
+Contiendrait idéalement:
+
+-input : 
+1-Differentially expressed results file (genes in rows, and 4 required columns: raw P values, adjusted P values (FDR), log fold change and gene labels)
+2-Genes of interest file (list of genes to be plotted in volcano)
+
+Fonctionnalité
+-volcano plot LogFC en fonction de Log10PVal
+-Choix de paire de couleur pour le volcano(ou automatique bleu rouge pour up et down)
+-Choix du threshold en fonction du FDR(adjusted val) et logFold change (u choix de l'utilisateur (curseur)
+-Labeling des gènes( all ou bien seulement ceux significatif au dela d'une seuil)
+
+
+PCA:
+https://github.com/benmarwick/Interactive_PCA_Explorer
+https://r-inthelab.net/2021/12/29/pca-maker-shiny-app/
+Fonctionalité:
+-choix des couleur 
+-removing outliers (comment?):
+https://www.biostars.org/p/391043/ (exemple de code)
+
+Heatmap:
+-couleur
+-affichage des label de genes
+-?
+https://training.galaxyproject.org/training-material/topics/transcriptomics/tutorials/rna-seq-viz-with-heatmap2/tutorial.html
+
+Pour les Go analysis, est-ce qu'on veut faire simplement un histogramme pour voir c'est quoi les GO qui ressorte le plus ou bien 
+Ou on peut avoir une analyse en fonction de cluster de PCA (trop sophistiqué je pense)
+Demander a virginie elle attend à quoi pour la GO***
+****** comment identifier outlier dans une PCA
+******Google pathway g profiler
+****Faut un tutoriel pour chaque fonctionnalités pour se donner une idée 
+**** diviser qui fait quell partie de la app
+
+
+
+
