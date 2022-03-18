@@ -29,3 +29,6 @@ Commandes git: <br/>
 Paquets à installer pour que l'application fonctionne:<br/>
 	install.packages("shiny")<br/>
 	install.packages("vroom")<br/>
+Paquet r-shiny pour:<br/>
+	PCA: https://github.com/benmarwick/Interactive_PCA_Explorer <br/>
+	Volcano: https://github.com/FredHutch/interactiveVolcano 
