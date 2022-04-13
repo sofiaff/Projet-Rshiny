@@ -27,11 +27,21 @@ shinyApp(
                             id = "volcano_brush",
                             resetOnNew = TRUE)),
                sidebarPanel(
-                 sliderInput("pvalue_threshold",
-                             "Set significance threshold",
+                 #sliderInput("pvalue_threshold",
+                            # "Set significance threshold",
+                            # min = 1,
+                             #max = 50,
+                            # value = .05),
+                 sliderInput("p_value_axis",
+                             "Set pvalue axis",
                              min = 0,
-                             max = 5,
-                             value = .05),
+                             max = 100,
+                             value = 50),
+                 sliderInput("h_treshold",
+                             "Set pvalue treshold",
+                             min = 0,
+                             max = 50,
+                             value = 10),
                )
       ),
       
@@ -58,12 +68,13 @@ shinyApp(
     output$volcano_plot <- renderPlot({
       file<- input$file1
       cleanfile<-na.omit(read.csv(file$datapath, header = input$header))
-      ggplot(data=cleanfile, aes(x=log2FoldChange, y=-log10(pvalue))) + 
+      ggplot(data=cleanfile, aes(x=log2FoldChange, y=-log10(pvalue), colour = -log10(pvalue)>input$h_treshold), label=external_gene_name) + 
         geom_point() + 
         theme_minimal()+
-        scale_color_manual(values=c("blue", "black", "red")) +
-        geom_vline(xintercept=c(-input$pvalue_threshold, input$pvalue_threshold), col="red") +
-        geom_hline(yintercept=-log10(0.05), col="red")
+        ylim(0,input$p_value_axis)+
+        scale_color_manual(values=c("Blue", "red")) +
+        geom_hline(yintercept=input$h_treshold, col="red")+
+        geom_text(aes(label=ifelse(-log10(pvalue)>input$h_treshold,as.character(external_gene_name),'')),hjust=0,vjust=0)
     })
     output$PCAPlot <- renderPlot({
       file<- input$file1
