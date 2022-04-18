@@ -54,9 +54,10 @@ shinyApp(
              plotOutput("HeatmapPlot"),
              sliderInput("p_value",
                          "Set pvalue target",
-                         min = 0,
-                         max = 1,
-                         value = 0,01),
+                         min = 0.001,
+                         max = 0.05,
+                         value = 0.005,
+                         step = 0.001),
       ),
       tabPanel("Gene Ontology",
              h4("Gene"),
@@ -87,10 +88,15 @@ shinyApp(
       pca<-prcomp(data[,5:10])
       autoplot(pca)
     })
-    output$Heatmap <- renderPlot({
+    output$HeatmapPlot <- renderPlot({
       file<- input$file1
       data<-na.omit(read.csv(file$datapath, header = input$header))
-      datamatrix <- as.matrix(data[,5:10])
+      vars<- c("external_gene_name","n1_d1", "n2_d1","n3_d1","n1_d2","n2_d2", "n3_d2","pvalue")
+      datafinal<-data[vars]
+      rownames(datafinal)<-make.names(datafinal$external_gene_name, unique=TRUE)
+      datafinal<-subset(datafinal,datafinal$pvalue<input$p_value)
+      datafinal<-data.matrix(datafinal[,2:7])
+      heatmap(datafinal, scale="row")
       
     })
   }
