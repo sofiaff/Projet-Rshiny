@@ -28,7 +28,10 @@ Commandes git: <br/>
 	
 Paquets à installer pour que l'application fonctionne:<br/>
 	install.packages("shiny")<br/>
-	install.packages("vroom")<br/>
+	install.packages("ggplot2")<br/>
+	install.packages("ggfortify")<br/>
 Paquet r-shiny pour:<br/>
 	PCA: https://github.com/benmarwick/Interactive_PCA_Explorer <br/>
-	Volcano: https://github.com/FredHutch/interactiveVolcano 
+	Volcano: https://github.com/FredHutch/interactiveVolcano <br/>
+Pour Mac:<br/>
+	installer XQuartz:https://www.xquartz.org
