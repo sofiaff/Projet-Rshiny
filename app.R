@@ -27,11 +27,6 @@ shinyApp(
                             id = "volcano_brush",
                             resetOnNew = TRUE)),
                sidebarPanel(
-                 #sliderInput("pvalue_threshold",
-                            # "Set significance threshold",
-                            # min = 1,
-                             #max = 50,
-                            # value = .05),
                  sliderInput("p_value_axis",
                              "Set pvalue axis",
                              min = 0,
@@ -51,30 +46,40 @@ shinyApp(
       ),
       tabPanel("Heatmap",
              h4("Heatmap"),
-             plotOutput("HeatmapPlot"),
+             plotOutput("HeatmapPlot",
+                        width = "80%",
+                        height = "600px",),
              sliderInput("p_value",
                          "Set pvalue target",
-                         min = 0.001,
-                         max = 0.05,
+                         min = 0,
+                         max = 0.1,
                          value = 0.005,
-                         step = 0.001),
+                         step = 0.0001),
       ),
       tabPanel("Gene Ontology",
-             h4("Gene"),
-             plotOutput('Gene plot')
+             h4("Gene Ontology"),
+             plotOutput('Gene plot'),
+             uiOutput("var_ui")
      
       ),
     )
   ),
   server = function(input, output) {
+    
+    myfile<- reactive({
+      mydata<-input$file1
+      cleanfile<-na.omit(read.csv(mydata$datapath, header = input$header))
+    })
+    
     output$table <- renderDataTable({
-      file <- input$file1
-      read.csv(file$datapath, header = input$header)
+      #file <- input$file1
+      #read.csv(file$datapath, header = input$header)
+      myfile()
     })
     output$volcano_plot <- renderPlot({
-      file<- input$file1
-      cleanfile<-na.omit(read.csv(file$datapath, header = input$header))
-      ggplot(data=cleanfile, aes(x=log2FoldChange, y=-log10(pvalue), colour = -log10(pvalue)>input$h_treshold), label=external_gene_name) + 
+      #file<- input$file1
+      #cleanfile<-na.omit(read.csv(file$datapath, header = input$header))
+      ggplot(data=myfile(), aes(x=log2FoldChange, y=-log10(pvalue), colour = -log10(pvalue)>input$h_treshold), label=external_gene_name) + 
         geom_point() + 
         theme_minimal()+
         ylim(0,input$p_value_axis)+
@@ -98,6 +103,12 @@ shinyApp(
       datafinal<-data.matrix(datafinal[,2:7])
       heatmap(datafinal, scale="row")
       
+    })
+    output$var_ui <- renderUI({
+      vars<- c("external_gene_name","ensembl_gene_id")
+      datafinal<-myfile()[vars]
+      databis<-datafinal[,1]
+      selectInput("var", "choose variable:", choices=databis)
     })
   }
 )
