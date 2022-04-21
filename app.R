@@ -2,6 +2,7 @@ options(shiny.maxRequestSize = 10 * 1024^2)
 library("ggplot2") 
 library("ggfortify")
 library("gprofiler2")
+library("ggrepel")
 shinyApp(
   ui = tagList(
     #shinythemes::themeSelector(),
@@ -43,7 +44,8 @@ shinyApp(
       
       tabPanel("PCA", 
                h4("PCA plot"),
-               plotOutput("PCAPlot")
+               plotOutput("PCAPlot"),
+               textInput("titre","Veuillez entrer un titre",value="")
       ),
       tabPanel("Heatmap",
              h4("Heatmap"),
@@ -56,11 +58,12 @@ shinyApp(
                          max = 0.05,
                          value = 0.005,
                          step = 0.0001),
+             textInput("titreHeatmap","Veuillez entrer un titre",value=""),
       ),
       tabPanel("Gene Ontology",
              h4("Gene Ontology"),
              uiOutput('GenePlot'),
-             selectInput("specie", "espece", c("hsapiens","mmusculus")),
+             selectInput("specie", "Espèce", c("hsapiens","mmusculus")),
              uiOutput("var_ui")
       ),
     )
@@ -82,6 +85,7 @@ shinyApp(
       #cleanfile<-na.omit(read.csv(file$datapath, header = input$header))
       ggplot(data=myfile(), aes(x=log2FoldChange, y=-log10(pvalue), colour = -log10(pvalue)>input$h_treshold), label=external_gene_name) + 
         geom_point() + 
+        #geom_text_repel( max.overlaps = getOption("ggrepel.max.overlaps", default = 20))+
         theme_minimal()+
         ylim(0,input$p_value_axis)+
         scale_color_manual(values=c("Blue", "red")) +
@@ -91,8 +95,22 @@ shinyApp(
     output$PCAPlot <- renderPlot({
       file<- input$file1
       data<-na.omit(read.csv(file$datapath, header = input$header))
-      pca<-prcomp(data[,5:10])
-      autoplot(pca)
+      data <- data.frame(data)
+      data_cts <- na.omit(data[,(5:10)])
+      datafinale <- t(data_cts)
+      z <- datafinale[ , which(apply(datafinale, 2, var) != 0)]
+      pcaB<-prcomp(z, center = TRUE, scale. = TRUE)
+      pcaB.var<-pcaB$sdev^2
+      pcaB.var.per <- round(pcaB.var/sum(pcaB.var)*100, 1)
+      pcaB.data <- data.frame(Sample= rownames(pcaB$x), X=pcaB$x[,1], Y=pcaB$x[,2])
+      ggplot(data= pcaB.data, mapping= aes(x=X, y=Y, label=Sample), shape= sample)+
+        geom_point(shape=18, color= "#00AFBB")+
+        geom_text_repel( max.overlaps = getOption("ggrepel.max.overlaps", default = 20))+
+        xlab(paste("PC1 - ", pcaB.var.per[1],"%", sep="")) + 
+        ylab(paste("PC2 - ", pcaB.var.per[2],"%", sep="")) +
+        theme_bw() +
+        ggtitle(input$titre) +
+        theme(plot.title = element_text(hjust = 0.5))
     })
     output$HeatmapPlot <- renderPlot({
       file<- input$file1
@@ -102,7 +120,7 @@ shinyApp(
       rownames(datafinal)<-make.names(datafinal$external_gene_name, unique=TRUE)
       datafinal<-subset(datafinal,datafinal$pvalue<input$p_value)
       datafinal<-data.matrix(datafinal[,2:7])
-      heatmap(datafinal, scale="row")
+      heatmap(datafinal, scale="row", main=input$titreHeatmap)
       
     })
     output$var_ui <- renderUI({
