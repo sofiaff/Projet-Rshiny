@@ -1,6 +1,7 @@
 options(shiny.maxRequestSize = 10 * 1024^2)
 library("ggplot2") 
 library("ggfortify")
+library("gprofiler2")
 shinyApp(
   ui = tagList(
     #shinythemes::themeSelector(),
@@ -58,9 +59,9 @@ shinyApp(
       ),
       tabPanel("Gene Ontology",
              h4("Gene Ontology"),
-             plotOutput('Gene plot'),
+             uiOutput('GenePlot'),
+             selectInput("specie", "espece", c("hsapiens","mmusculus")),
              uiOutput("var_ui")
-     
       ),
     )
   ),
@@ -108,7 +109,14 @@ shinyApp(
       vars<- c("external_gene_name","ensembl_gene_id")
       datafinal<-myfile()[vars]
       databis<-datafinal[,1]
-      selectInput("var", "choose variable:", choices=databis)
+      selectInput("var", "choose variable:", choices=databis, multiple=TRUE)
+    })
+    output$GenePlot <- renderUI({
+      gostres <- gost(query = list(c(input$var),
+                                   organism = input$specie))
+      names(gostres)
+      gostres
+      gostplot(gostres, capped = TRUE, interactive = TRUE)
     })
   }
 )
