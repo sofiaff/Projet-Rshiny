@@ -1,6 +1,6 @@
 # Projet-Rshiny
 
-Setup pour git:
+<h4> Setup pour git: </h4> 
 1) Créer un compte github
 2) Setup une clé ssh :
 	- En ligne de commande sur l'ordinateur personnel taper la commande: ssh-keygen -t rsa
