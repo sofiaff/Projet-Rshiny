@@ -10,18 +10,18 @@ Setup pour git:
 	1) En ligne de commande, sur son desktop taper la commande: git clone git@github.com:sofiaff/Projet-Rshiny.git
 
 <br/>	
-<h2> Paquets à installer pour que l'application fonctionne:</h2> <br/>
+<h4> Paquets à installer pour que l'application fonctionne:</h4> <br/>
 	install.packages("shiny")<br/>
 	install.packages("ggplot2")<br/>
 	install.packages("ggfortify")<br/>
 	install.packages("ggrepel")<br/>
 <br/>	
-## Rouler l'application:<br/>
+<h4> Rouler l'application: </h4>  <br/> 
 	Ouvrir Rstudio<br/>
 	Ouvrir le fichier app.R<br/>
 	Dans jobs rouler app.R<br/>
 <br/>
-##Commandes git: <br/>
+<h4> Commandes git: </h4>  <br/>
 *	Copier le repertoire : git clone <br/>
 *	Vérifier le status du projet: git status <br/>
 *	Montrer les changements: git diff <br/>
