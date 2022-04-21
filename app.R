@@ -53,7 +53,7 @@ shinyApp(
              sliderInput("p_value",
                          "Set pvalue target",
                          min = 0,
-                         max = 0.1,
+                         max = 0.05,
                          value = 0.005,
                          step = 0.0001),
       ),
