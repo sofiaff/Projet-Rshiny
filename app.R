@@ -9,7 +9,7 @@ shinyApp(
     navbarPage("Projet BIF7104",
       # theme = "cerulean",  # <--- To use a theme, uncomment this
       #"shinythemes",
-      tabPanel("Table de données",
+      tabPanel("Data Table",
                h4("Table"),
                dataTableOutput("table"),
                sidebarPanel(
@@ -45,7 +45,7 @@ shinyApp(
       tabPanel("PCA", 
                h4("PCA plot"),
                plotOutput("PCAPlot"),
-               textInput("titre","Veuillez entrer un titre",value="")
+               textInput("titre","Diagram title:",value="")
       ),
       tabPanel("Heatmap",
              h4("Heatmap"),
@@ -58,13 +58,18 @@ shinyApp(
                          max = 0.05,
                          value = 0.005,
                          step = 0.0001),
-             textInput("titreHeatmap","Veuillez entrer un titre",value=""),
+             textInput("titreHeatmap","Diagram title:",value=""),
       ),
       tabPanel("Gene Ontology",
              h4("Gene Ontology"),
              uiOutput('GenePlot'),
-             selectInput("specie", "Espèce", c("hsapiens","mmusculus")),
+             selectInput("specie", "Species", c("hsapiens","mmusculus")),
              uiOutput("var_ui")
+      ),
+      tabPanel("Gene Ontology Table",
+               h4("Gene Ontology Table"),
+               plotOutput('GeneTable',
+                          width = "100%",),
       ),
     )
   ),
@@ -91,7 +96,7 @@ shinyApp(
         scale_color_manual(values=c("Blue", "red")) +
         geom_hline(yintercept=input$h_treshold, col="red")+
         geom_text(aes(label=ifelse(-log10(pvalue)>input$h_treshold,as.character(external_gene_name),'')),hjust=0,vjust=0)
-    })
+      })
     output$PCAPlot <- renderPlot({
       file<- input$file1
       data<-na.omit(read.csv(file$datapath, header = input$header))
@@ -135,6 +140,18 @@ shinyApp(
       names(gostres)
       gostres
       gostplot(gostres, capped = TRUE, interactive = TRUE)
+    })
+    output$GeneTable <- renderPlot({
+      gostres <- gost(query = list(c(input$var),
+                                   organism = input$specie))
+      publish_gosttable(
+        gostres,
+        highlight_terms = NULL,
+        use_colors = TRUE,
+        show_columns = c("source", "term_name", "term_size", "intersection_size"),
+        filename = NULL,
+        ggplot = TRUE
+      )
     })
   }
 )
