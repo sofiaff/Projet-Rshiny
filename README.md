@@ -9,11 +9,17 @@ Setup pour git:
 3) Créer un repertoire local:
 	1) En ligne de commande, sur son desktop taper la commande: git clone git@github.com:sofiaff/Projet-Rshiny.git
 
-
-Rouler l'application:
-	ouvrir Rstudio
-	Ouvrir le fichier app.R
-	Dans jobs rouler app.R
+<br/>	
+Paquets à installer pour que l'application fonctionne:<br/>
+	install.packages("shiny")<br/>
+	install.packages("ggplot2")<br/>
+	install.packages("ggfortify")<br/>
+	install.packages("ggrepel")<br/>
+<br/>	
+Rouler l'application:<br/>
+	Ouvrir Rstudio<br/>
+	Ouvrir le fichier app.R<br/>
+	Dans jobs rouler app.R<br/>
 <br/>
 Commandes git: <br/>
 *	Copier le repertoire : git clone <br/>
@@ -25,13 +31,7 @@ Commandes git: <br/>
 *	Soumettre les changements au répertoire distant: git push <br/>
 *	Changer ou créer une branche: git checkout -b NomDeLaBranche <br/>
 *	Voir l'historique des changement: git log <br/>
+
 	
-Paquets à installer pour que l'application fonctionne:<br/>
-	install.packages("shiny")<br/>
-	install.packages("ggplot2")<br/>
-	install.packages("ggfortify")<br/>
-Paquet r-shiny pour:<br/>
-	PCA: https://github.com/benmarwick/Interactive_PCA_Explorer <br/>
-	Volcano: https://github.com/FredHutch/interactiveVolcano <br/>
-Pour Mac:<br/>
+Pour Mac: Si erreur lors de l'affichage du Heatmap installer le paquet suivant:<br/>
 	installer XQuartz:https://www.xquartz.org
