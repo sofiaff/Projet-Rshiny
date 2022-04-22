@@ -39,6 +39,7 @@ shinyApp(
                              min = 0,
                              max = 50,
                              value = 10),
+                 textInput("titleVolcano","Diagram title:",value=""),
                )
       ),
       
@@ -58,6 +59,11 @@ shinyApp(
                          max = 0.05,
                          value = 0.005,
                          step = 0.0001),
+             sliderInput("numberGene",
+                         "Set max number of gene:",
+                         min = 0,
+                         max = 1000,
+                         value = 500),
              textInput("titreHeatmap","Diagram title:",value=""),
       ),
       tabPanel("Gene Ontology",
@@ -86,12 +92,12 @@ shinyApp(
       myfile()
     })
     output$volcano_plot <- renderPlot({
-      #file<- input$file1
-      #cleanfile<-na.omit(read.csv(file$datapath, header = input$header))
       ggplot(data=myfile(), aes(x=log2FoldChange, y=-log10(pvalue), colour = -log10(pvalue)>input$h_treshold), label=external_gene_name) + 
         geom_point() + 
+        ggtitle(input$titleVolcano) +
         #geom_text_repel( max.overlaps = getOption("ggrepel.max.overlaps", default = 20))+
         theme_minimal()+
+        theme(plot.title = element_text(hjust = 0.5))+
         ylim(0,input$p_value_axis)+
         scale_color_manual(values=c("Blue", "red")) +
         geom_hline(yintercept=input$h_treshold, col="red")+
@@ -123,7 +129,13 @@ shinyApp(
       vars<- c("external_gene_name","n1_d1", "n2_d1","n3_d1","n1_d2","n2_d2", "n3_d2","pvalue")
       datafinal<-data[vars]
       rownames(datafinal)<-make.names(datafinal$external_gene_name, unique=TRUE)
-      datafinal<-subset(datafinal,datafinal$pvalue<input$p_value)
+      datafinal1<-head(datafinal,input$numberGene)
+      datafinal2<-subset(datafinal,datafinal$pvalue<input$p_value)
+      if (nrow(datafinal1)<=nrow(datafinal2)) {
+        datafinal<-datafinal1
+      } else {
+        datafinal<-datafinal2
+      }
       datafinal<-data.matrix(datafinal[,2:7])
       heatmap(datafinal, scale="row", main=input$titreHeatmap)
       
