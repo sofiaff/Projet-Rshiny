@@ -21,6 +21,10 @@
 	Ouvrir le fichier app.R<br/>
 	Dans jobs rouler app.R<br/>
 <br/>
+<h4> Format du fichier à chargé: </h4>  <br/> 
+	Fichier au format CSV<br/> 
+	Filtrer le fichier en fonction des p-value du plus petit au plus grand<br/>
+	
 <h4> Commandes git: </h4>  <br/>
 *	Copier le repertoire : git clone <br/>
 *	Vérifier le status du projet: git status <br/>
