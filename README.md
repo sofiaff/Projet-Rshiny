@@ -13,7 +13,7 @@
 <h4> Paquets à installer pour que l'application fonctionne:</h4> <br/>
 	install.packages("shiny")<br/>
 	install.packages("ggplot2")<br/>
-	install.packages("ggfortify")<br/>
+	install.packages("gprofiler2")<br/>
 	install.packages("ggrepel")<br/>
 <br/>	
 <h4> Rouler l'application: </h4>  <br/> 
